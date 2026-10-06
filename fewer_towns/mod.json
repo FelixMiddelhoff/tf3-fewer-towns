@@ -1,0 +1,61 @@
+{
+    "dependencies": null,
+    "incompatibilities": null,
+    "modId": "felix_fewer_towns_1",
+    "options": null,
+    "params": [
+        {
+            "defaultIndex": 0,
+            "key": "keep",
+            "name": "Towns to keep",
+            "tooltip": "Share of the generated towns that stays. The other towns are deleted when a new game starts. 100% changes nothing.",
+            "uiType": "ComboBox",
+            "values": [
+                "100% (all towns)",
+                "75%",
+                "50%",
+                "40%",
+                "30%",
+                "20%",
+                "10%"
+            ],
+            "numbers": [
+                100.0,
+                75.0,
+                50.0,
+                40.0,
+                30.0,
+                20.0,
+                10.0
+            ],
+            "yearFrom": 0,
+            "yearTo": 0
+        },
+        {
+            "defaultIndex": 0,
+            "key": "mode",
+            "name": "Which towns are deleted",
+            "tooltip": "Random towns, the smallest towns first, or the largest towns first.",
+            "uiType": "ComboBox",
+            "values": [
+                "Random towns",
+                "Smallest towns first",
+                "Largest towns first"
+            ],
+            "yearFrom": 0,
+            "yearTo": 0
+        }
+    ],
+    "preRunScript": {
+        "fileName": "felix_fewer_towns_1::/mod.script@preRunFn"
+    },
+    "postRunScript": {
+        "fileName": ""
+    },
+    "revision": 1,
+    "runScript": {
+        "fileName": ""
+    },
+    "severityAdd": "None",
+    "severityRemove": "None"
+}
