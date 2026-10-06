@@ -1,5 +1,7 @@
 # Fewer Towns (Transport Fever 3)
 
+![13 towns without the mod, 4 towns with the mod](preview.png)
+
 **EN** | [DE](#deutsch)
 
 A script mod for Transport Fever 3. When a new game starts, it deletes a share of the generated towns, so you can play on a map with **fewer towns than the "Town Density" slider allows** (for example 6 instead of the 11 that "Sparse" gives on a very large map).
@@ -21,6 +23,7 @@ In Transport Fever 2 the town density could be lowered in `base_config.lua`. In 
 ## What to expect
 
 - It works **only at the start of a new game**, never in a running game. Adding the mod to a savegame does nothing.
+- **How old must a savegame be to stay untouched?** The mod only deletes towns while the game has run for fewer than **2000 simulation updates**. In the tests a fresh game was at 75 to 322 updates when the towns were deleted, and a savegame that had been played for a while was at 19 237 and was left alone. Roughly: a savegame in which you played for **more than about 7 minutes** (at normal speed, sooner at fast forward) is never changed. A savegame saved in the very first minutes of a new game can still be affected if you add the mod to it.
 - The map preview in the new game dialog still shows the **original** number of towns.
 - **Roads that connected a deleted town stay behind** as dead ends. You can remove them with the bulldozer. Removing them automatically is a possible later addition.
 - Industries are not touched. Industries that stood next to a deleted town stay where they are.
@@ -37,7 +40,10 @@ Open the **Mod Hub** in the game, search for "Fewer Towns" and subscribe. This r
 
 ## Tested
 
-Tested on Transport Fever 3, build 40408: a very large map with 11 towns, 50 %, random: 5 towns were deleted, 6 remained, and the game ran for several minutes without errors.
+Tested on Transport Fever 3, build 40408:
+- A very large map with 11 towns, 50 %, random: 5 towns were deleted, 6 remained, and the game ran for several minutes without errors.
+- A small map (8 × 8 km) with 13 towns, 30 %, random: 9 towns were deleted, 4 remained (see the picture above).
+- The protection: an older savegame with the mod active was left unchanged.
 
 Not tested: the other percentages and the two other modes, maps with many more towns, and the combination with other mods.
 
@@ -72,6 +78,7 @@ In Transport Fever 2 ließ sich die Städtedichte in der `base_config.lua` senke
 ### Was du erwarten kannst
 
 - Er wirkt **nur beim Start eines neuen Spiels**, nie in einem laufenden Spiel. Den Mod zu einem Spielstand hinzuzufügen bewirkt nichts.
+- **Wie alt muss ein Spielstand sein, damit er unberührt bleibt?** Der Mod löscht Städte nur, solange das Spiel weniger als **2000 Simulationsschritte** gelaufen ist. In den Tests stand ein frisches Spiel beim Löschen bei 75 bis 322 Schritten, ein Spielstand, in dem schon eine Weile gespielt wurde, bei 19 237 und blieb unverändert. Als Faustregel: Ein Spielstand, in dem du **länger als etwa 7 Minuten** gespielt hast (bei normaler Geschwindigkeit, im Zeitraffer eher), wird nie verändert. Ein Spielstand, der in den allerersten Minuten eines neuen Spiels gespeichert wurde, kann noch betroffen sein, wenn du den Mod dazuschaltest.
 - Die Kartenvorschau im Neues-Spiel-Dialog zeigt weiter die **ursprüngliche** Städtezahl.
 - **Straßen, die zu einer gelöschten Stadt führten, bleiben als Sackgassen zurück.** Mit dem Abrisswerkzeug lassen sie sich entfernen. Ein automatisches Entfernen wäre eine mögliche spätere Ergänzung.
 - Industrien bleiben unberührt. Industrien neben einer gelöschten Stadt bleiben stehen.
@@ -83,7 +90,10 @@ Im Spiel den **Mod-Hub** öffnen, nach „Fewer Towns“ suchen und abonnieren. 
 
 ### Getestet
 
-Getestet mit Transport Fever 3, Build 40408: sehr große Karte mit 11 Städten, 50 %, zufällig. 5 Städte wurden gelöscht, 6 blieben, und das Spiel lief mehrere Minuten ohne Fehler.
+Getestet mit Transport Fever 3, Build 40408:
+- Sehr große Karte mit 11 Städten, 50 %, zufällig: 5 Städte wurden gelöscht, 6 blieben, und das Spiel lief mehrere Minuten ohne Fehler.
+- Kleine Karte (8 × 8 km) mit 13 Städten, 30 %, zufällig: 9 Städte wurden gelöscht, 4 blieben (siehe Bild oben).
+- Der Schutz: Ein älterer Spielstand mit aktivem Mod blieb unverändert.
 
 Nicht getestet: die anderen Prozentwerte und die zwei anderen Modi, Karten mit deutlich mehr Städten und die Kombination mit anderen Mods.
 
