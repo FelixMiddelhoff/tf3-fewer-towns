@@ -4,6 +4,8 @@
 
 **EN** | [DE](#deutsch)
 
+**Get it in the in-game Mod Hub** (mod.io): [Fewer Towns](https://mod.io/g/transportfever3/m/fewer-towns)
+
 A script mod for Transport Fever 3. When a new game starts, it deletes a share of the generated towns, so you can play on a map with **fewer towns than the "Town Density" slider allows** (for example 6 instead of the 11 that "Sparse" gives on a very large map).
 
 **Please test it in a new game first, and tell me how it works for you** (see [Feedback](#feedback)).
@@ -58,6 +60,8 @@ MIT, see [LICENSE](LICENSE).
 ---
 
 ## Deutsch
+
+**Im Spiel über den Mod-Hub laden** (mod.io): [Fewer Towns](https://mod.io/g/transportfever3/m/fewer-towns)
 
 Ein Script-Mod für Transport Fever 3. Beim Start eines neuen Spiels löscht er einen Teil der erzeugten Städte. So kannst du auf einer Karte mit **weniger Städten spielen, als der Regler „Städtedichte“ erlaubt** (zum Beispiel 6 statt der 11, die „Sehr dünn“ auf einer sehr großen Karte liefert).
 
