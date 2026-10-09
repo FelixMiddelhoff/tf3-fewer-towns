@@ -45,6 +45,65 @@ local findCentralIndex = function(centers : {{number}}) : integer
 	return best
 end
 
+-- indices of the towns to delete, so that the kept towns cover the whole map: the central town (if kept),
+-- then one town per grid cell over the map, the one closest to the cell's middle
+local spreadDeleteOrder = function(centers : {{number}}, centralIndex : integer, keepCount : integer) : {integer}
+	local kept : {integer : boolean} = {}
+	local keptCount = 0
+	if centralIndex then
+		kept[centralIndex] = true
+		keptCount = 1
+	end
+
+	local want = keepCount - keptCount
+	if want > 0 then
+		local minX, maxX, minY, maxY = math.huge, -math.huge, math.huge, -math.huge
+		for _, c in ipairs(centers) do
+			minX = math.min(minX, c[1])
+			maxX = math.max(maxX, c[1])
+			minY = math.min(minY, c[2])
+			maxY = math.max(maxY, c[2])
+		end
+		local width = math.max(maxX - minX, 1.0)
+		local height = math.max(maxY - minY, 1.0)
+		local cols = math.max(1, math.floor(math.sqrt(want * width / height) + 0.5))
+		local rows = math.ceil(want / cols)
+
+		local picked = 0
+		for row = 0, rows - 1 do
+			for col = 0, cols - 1 do
+				if picked < want then
+					local cx = minX + (col + 0.5) * width / cols
+					local cy = minY + (row + 0.5) * height / rows
+					local best = nil
+					local bestDist = math.huge
+					for i, c in ipairs(centers) do
+						if not kept[i] then
+							local dx = c[1] - cx
+							local dy = c[2] - cy
+							local dist = dx * dx + dy * dy
+							if dist < bestDist then
+								bestDist = dist
+								best = i
+							end
+						end
+					end
+					kept[best] = true
+					picked = picked + 1
+				end
+			end
+		end
+	end
+
+	local order : {integer} = {}
+	for i = 1, #centers do
+		if not kept[i] then
+			order[#order + 1] = i
+		end
+	end
+	return order
+end
+
 -- state: elapsed = seconds since the script started, phase 0 = waiting, 1 = deleted, 2 = verified
 local ret : GameScript<{string : number}> = {
 	update = function(_userParams : table, state : GameScriptState<{string : number}>, dt : number) : any
@@ -64,8 +123,8 @@ local ret : GameScript<{string : number}> = {
 			local baseConfig = api.res.getBaseConfig()
 			local keepPercent = math.floor(baseConfig.locations.town.townFrequency * 100 + 0.5)
 			local encoded = math.floor(baseConfig.locations.town.maxNumberPerArea + 0.5)
-			local mode = ((encoded - 1) % 3) + 1
-			local keepCentral = encoded > 3
+			local mode = ((encoded - 1) % 4) + 1
+			local keepCentral = encoded > 4
 
 			local gameTime : Engine.Component.GameTime = api.engine.getComponent(api.engine.util.getWorld(), api.type.ComponentType.GAME_TIME)
 			log.message("FewerTowns: start, keepPercent=" .. tostring(keepPercent) .. " mode=" .. tostring(mode) .. " updateCount=" .. tostring(gameTime and gameTime.updateCount or -1))
@@ -117,25 +176,29 @@ local ret : GameScript<{string : number}> = {
 
 			if keepPercent < 100 and toDelete > 0 then
 				local order : {integer} = {}
-				for i = 1, total do
-					if i ~= centralIndex then
-						order[#order + 1] = i
-					end
-				end
-				total = #order
-				if mode == 2 then
-					table.sort(order, function(a : integer, b : integer) : boolean
-						return sizes[a] < sizes[b]
-					end)
-				elseif mode == 3 then
-					table.sort(order, function(a : integer, b : integer) : boolean
-						return sizes[a] > sizes[b]
-					end)
+				if mode == 4 then
+					order = spreadDeleteOrder(centers, centralIndex, total - toDelete)
 				else
-					math.randomseed(total * 7919 + 17)
-					for i = total, 2, -1 do
-						local j = math.random(1, i)
-						order[i], order[j] = order[j], order[i]
+					for i = 1, total do
+						if i ~= centralIndex then
+							order[#order + 1] = i
+						end
+					end
+					total = #order
+					if mode == 2 then
+						table.sort(order, function(a : integer, b : integer) : boolean
+							return sizes[a] < sizes[b]
+						end)
+					elseif mode == 3 then
+						table.sort(order, function(a : integer, b : integer) : boolean
+							return sizes[a] > sizes[b]
+						end)
+					else
+						math.randomseed(total * 7919 + 17)
+						for i = total, 2, -1 do
+							local j = math.random(1, i)
+							order[i], order[j] = order[j], order[i]
+						end
 					end
 				end
 

@@ -35,12 +35,13 @@
             "defaultIndex": 0,
             "key": "mode",
             "name": "Which towns are deleted",
-            "tooltip": "Random towns, the smallest towns first, or the largest towns first.",
+            "tooltip": "Random towns, the smallest towns first, the largest towns first, or towns spread evenly over the map.",
             "uiType": "ComboBox",
             "values": [
                 "Random towns",
                 "Smallest towns first",
-                "Largest towns first"
+                "Largest towns first",
+                "Evenly spread over the map"
             ],
             "yearFrom": 0,
             "yearTo": 0

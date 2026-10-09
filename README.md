@@ -19,7 +19,7 @@ In Transport Fever 2 the town density could be lowered in `base_config.lua`. In 
 1. Create a new game as usual and choose the map settings.
 2. In the mod selection, activate **Fewer Towns** and open its custom parameters (gear icon).
 3. Choose **Towns to keep**: 100 % (nothing changes), 75 %, 50 %, 40 %, 30 %, 20 % or 10 %.
-4. Choose **Which towns are deleted**: random towns, the smallest towns first, or the largest towns first.
+4. Choose **Which towns are deleted**: random towns, the smallest towns first, the largest towns first, or evenly spread over the map (the kept towns are spread over the whole map).
 5. Choose **Central town**: keep it (default) or delete it too. The central town is the town closest to the middle of the map. Keeping it leaves the tutorial and its rewards working.
 6. Click **Create map**. About 15 seconds after the game started, the towns are deleted. At least one town always stays.
 
@@ -77,7 +77,7 @@ In Transport Fever 2 ließ sich die Städtedichte in der `base_config.lua` senke
 1. Ein neues Spiel wie gewohnt anlegen und die Karteneinstellungen wählen.
 2. In der Mod-Auswahl **Fewer Towns** aktivieren und die eigenen Parameter öffnen (Zahnrad).
 3. **Towns to keep** wählen: 100 % (nichts ändert sich), 75 %, 50 %, 40 %, 30 %, 20 % oder 10 %.
-4. **Which towns are deleted** wählen: zufällige Städte, die kleinsten zuerst oder die größten zuerst.
+4. **Which towns are deleted** wählen: zufällige Städte, die kleinsten zuerst, die größten zuerst oder gleichmäßig über die Karte verteilt (die verbleibenden Städte werden über die ganze Karte verteilt).
 5. **Central town** wählen: behalten (Standard) oder auch löschen. Die Zentralstadt ist die Stadt, die der Kartenmitte am nächsten liegt. Wenn sie bleibt, funktionieren Tutorial und seine Belohnungen weiter.
 6. Auf **Karte erstellen** klicken. Etwa 15 Sekunden nach Spielstart werden die Städte gelöscht. Mindestens eine Stadt bleibt immer.
 

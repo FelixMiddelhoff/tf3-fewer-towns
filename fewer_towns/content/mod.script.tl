@@ -7,8 +7,8 @@ local KeepPercents : {number} = { 100, 75, 50, 40, 30, 20, 10 }
 -- The chosen values are handed to the game script through two fields of the base config that
 -- do not matter after the map was generated:
 --   locations.town.townFrequency    = share of the towns that stays (1.0 = all)
---   locations.town.maxNumberPerArea = mode + 3 * keepCentral
---                                     mode: 1 random, 2 smallest first, 3 largest first
+--   locations.town.maxNumberPerArea = mode + 4 * keepCentral
+--                                     mode: 1 random, 2 smallest first, 3 largest first, 4 evenly spread
 --                                     keepCentral: 0 no, 1 yes (central town is never deleted)
 -- The game counts the choices of a parameter from 1 (first value = 1).
 mod.preRunFn = function(captureParams, _configDict : {{string, string}}, allModParams : {string : {string : integer}}, baseConfig : BaseConfig)
@@ -27,7 +27,7 @@ mod.preRunFn = function(captureParams, _configDict : {{string, string}}, allModP
 	if rawKeep > #KeepPercents then
 		rawKeep = #KeepPercents
 	end
-	if rawMode < 1 or rawMode > 3 then
+	if rawMode < 1 or rawMode > 4 then
 		rawMode = 1
 	end
 	local keepCentral = 0
@@ -48,7 +48,7 @@ mod.preRunFn = function(captureParams, _configDict : {{string, string}}, allModP
 	end
 
 	baseConfig.locations.town.townFrequency = KeepPercents[rawKeep] / 100
-	baseConfig.locations.town.maxNumberPerArea = rawMode + 3 * keepCentral
+	baseConfig.locations.town.maxNumberPerArea = rawMode + 4 * keepCentral
 
 	log.message("FewerTowns: raw keep=" .. tostring(rawKeep) .. " raw mode=" .. tostring(rawMode) .. " raw central=" .. tostring(rawCentral) .. " tutorial=" .. tostring(tutorialActive) .. " keep=" .. tostring(baseConfig.locations.town.townFrequency))
 end
