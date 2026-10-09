@@ -43,7 +43,7 @@ mod.preRunFn = function(captureParams, _configDict : {{string, string}}, allModP
 		tutorialActive = true
 	end
 	if tutorialActive then
-		log.warning("FewerTowns: the tutorial is on, no towns are deleted. The tutorial needs specific towns, and the mod cannot read which ones.")
+		log.message("FewerTowns WARNING: the tutorial is on, no towns are deleted. The tutorial needs specific towns, and the mod cannot read which ones.")
 		rawKeep = 1
 	end
 
