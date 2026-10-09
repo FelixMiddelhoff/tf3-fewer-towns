@@ -44,6 +44,19 @@
             ],
             "yearFrom": 0,
             "yearTo": 0
+        },
+        {
+            "defaultIndex": 0,
+            "key": "central",
+            "name": "Central town",
+            "tooltip": "The town closest to the middle of the map. Keep it so that the tutorial and its rewards still work.",
+            "uiType": "ComboBox",
+            "values": [
+                "Keep the central town",
+                "Delete it too"
+            ],
+            "yearFrom": 0,
+            "yearTo": 0
         }
     ],
     "preRunScript": {
@@ -52,7 +65,7 @@
     "postRunScript": {
         "fileName": ""
     },
-    "revision": 1,
+    "revision": 3,
     "runScript": {
         "fileName": ""
     },

@@ -20,7 +20,8 @@ In Transport Fever 2 the town density could be lowered in `base_config.lua`. In 
 2. In the mod selection, activate **Fewer Towns** and open its custom parameters (gear icon).
 3. Choose **Towns to keep**: 100 % (nothing changes), 75 %, 50 %, 40 %, 30 %, 20 % or 10 %.
 4. Choose **Which towns are deleted**: random towns, the smallest towns first, or the largest towns first.
-5. Click **Create map**. About 15 seconds after the game started, the towns are deleted. At least one town always stays.
+5. Choose **Central town**: keep it (default) or delete it too. The central town is the town closest to the middle of the map. Keeping it leaves the tutorial and its rewards working.
+6. Click **Create map**. About 15 seconds after the game started, the towns are deleted. At least one town always stays.
 
 ## What to expect
 
@@ -37,7 +38,7 @@ Open the **Mod Hub** in the game, search for "Fewer Towns" and subscribe. This r
 
 ## How it works
 
-- `content/mod.script.tl`: the mod parameters are handed to the game script through two fields of the base config that no longer matter after the map was generated (`locations.town.townFrequency` and `locations.town.maxNumberPerArea`).
+- `content/mod.script.tl`: the mod parameters are handed to the game script through two fields of the base config that no longer matter after the map was generated (`locations.town.townFrequency` and `locations.town.maxNumberPerArea`; the latter carries the mode plus 3 if the central town is kept).
 - `content/fewer_towns.script.tl`: a game script that waits 15 seconds, then deletes the chosen share of towns with `makeTownDestroyCmd`. It does nothing if the game is already running (`updateCount` is checked).
 
 ## Tested
@@ -77,12 +78,14 @@ In Transport Fever 2 ließ sich die Städtedichte in der `base_config.lua` senke
 2. In der Mod-Auswahl **Fewer Towns** aktivieren und die eigenen Parameter öffnen (Zahnrad).
 3. **Towns to keep** wählen: 100 % (nichts ändert sich), 75 %, 50 %, 40 %, 30 %, 20 % oder 10 %.
 4. **Which towns are deleted** wählen: zufällige Städte, die kleinsten zuerst oder die größten zuerst.
-5. Auf **Karte erstellen** klicken. Etwa 15 Sekunden nach Spielstart werden die Städte gelöscht. Mindestens eine Stadt bleibt immer.
+5. **Central town** wählen: behalten (Standard) oder auch löschen. Die Zentralstadt ist die Stadt, die der Kartenmitte am nächsten liegt. Wenn sie bleibt, funktionieren Tutorial und seine Belohnungen weiter.
+6. Auf **Karte erstellen** klicken. Etwa 15 Sekunden nach Spielstart werden die Städte gelöscht. Mindestens eine Stadt bleibt immer.
 
 ### Was du erwarten kannst
 
 - Er wirkt **nur beim Start eines neuen Spiels**, nie in einem laufenden Spiel. Den Mod zu einem Spielstand hinzuzufügen bewirkt nichts.
 - **Wie alt muss ein Spielstand sein, damit er unberührt bleibt?** Der Mod löscht Städte nur, solange das Spiel weniger als **2000 Simulationsschritte** gelaufen ist. In den Tests stand ein frisches Spiel beim Löschen bei 75 bis 322 Schritten, ein Spielstand, in dem schon eine Weile gespielt wurde, bei 19 237 und blieb unverändert. Als Faustregel: Ein Spielstand, in dem du **länger als etwa 7 Minuten** gespielt hast (bei normaler Geschwindigkeit, im Zeitraffer eher), wird nie verändert. Ein Spielstand, der in den allerersten Minuten eines neuen Spiels gespeichert wurde, kann noch betroffen sein, wenn du den Mod dazuschaltest.
+- Mit eingeschaltetem **Tutorial** wird keine Stadt gelöscht. Das Tutorial braucht bestimmte Städte mit Namen, und fehlt eine, stürzt das Spiel ab.
 - Die Kartenvorschau im Neues-Spiel-Dialog zeigt weiter die **ursprüngliche** Städtezahl.
 - **Straßen, die zu einer gelöschten Stadt führten, bleiben als Sackgassen zurück.** Mit dem Abrisswerkzeug lassen sie sich entfernen. Ein automatisches Entfernen wäre eine mögliche spätere Ergänzung.
 - Industrien bleiben unberührt. Industrien neben einer gelöschten Stadt bleiben stehen.
